@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ng1botsrfm3"]
+
+[ext_resource type="Texture2D" uid="uid://2q4g52ovoog4" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Idle.png" id="1_w1gl8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3fsk"]
+radius = 6.0
+height = 38.0
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -40)
+texture = ExtResource("1_w1gl8")
+hframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("CapsuleShape2D_t3fsk")
