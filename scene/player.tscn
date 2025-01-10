@@ -224,7 +224,7 @@ _data = {
 "run": SubResource("Animation_r4hxi")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_sjld3")
 speed = 200.0
 jump_speed = 300.0

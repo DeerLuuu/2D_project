@@ -17,13 +17,15 @@ tile_map_data = PackedByteArray("AAAXAB0AAAAGAAEAAAAYAB0AAAAIAAEAAAAZAB0AAAAIAAE
 tile_set = ExtResource("1_c7118")
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(688, 402)
+position = Vector2(665, 352)
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 script = ExtResource("2_sfm18")
 
 [node name="Player" parent="." instance=ExtResource("1_5mvbp")]
 position = Vector2(665, 352)
 
 [node name="Player2" parent="." instance=ExtResource("1_5mvbp")]
-position = Vector2(872, 353)
+position = Vector2(1004, 367)
 is_player_two = true

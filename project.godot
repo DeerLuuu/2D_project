@@ -29,6 +29,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 [global_group]
 
 tile_map_layer="场景瓦片地图层"
+Player="玩家分组"
 
 [input]
 
