@@ -1,10 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5ng1botsrfm3"]
+[gd_scene load_steps=19 format=3 uid="uid://b5ng1botsrfm3"]
 
 [ext_resource type="Script" path="res://scene/player.gd" id="1_sjld3"]
 [ext_resource type="Texture2D" uid="uid://2q4g52ovoog4" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Idle.png" id="1_w1gl8"]
 [ext_resource type="Texture2D" uid="uid://dm6n0q0gn8nfa" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Run.png" id="3_py5jf"]
 [ext_resource type="Texture2D" uid="uid://fhpbhjanihih" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Jump.png" id="4_o78pk"]
 [ext_resource type="Texture2D" uid="uid://psa0jm6va036" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Fall.png" id="5_ciriq"]
+[ext_resource type="Script" path="res://scripts/fsm/final_state_machine.gd" id="6_ivi2p"]
+[ext_resource type="Script" path="res://scene/idle_state.gd" id="7_pco3p"]
+[ext_resource type="Script" path="res://scene/run_state.gd" id="8_kqk5f"]
+[ext_resource type="Script" path="res://scene/jump_state.gd" id="9_e4ca4"]
+[ext_resource type="Script" path="res://scene/fall_state.gd" id="10_coyhh"]
+[ext_resource type="Script" path="res://scene/double_jump_state.gd" id="11_nghy5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3fsk"]
 radius = 6.0
@@ -243,3 +249,22 @@ libraries = {
 "": SubResource("AnimationLibrary_286or")
 }
 autoplay = "idle"
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("6_ivi2p")
+init_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="FSM"]
+script = ExtResource("7_pco3p")
+
+[node name="RunState" type="Node" parent="FSM"]
+script = ExtResource("8_kqk5f")
+
+[node name="JumpState" type="Node" parent="FSM"]
+script = ExtResource("9_e4ca4")
+
+[node name="FallState" type="Node" parent="FSM"]
+script = ExtResource("10_coyhh")
+
+[node name="DoubleJumpState" type="Node" parent="FSM"]
+script = ExtResource("11_nghy5")

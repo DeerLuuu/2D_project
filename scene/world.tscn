@@ -1,10 +1,51 @@
-[gd_scene load_steps=4 format=4 uid="uid://dv6nsw81dvipb"]
+[gd_scene load_steps=8 format=4 uid="uid://dv6nsw81dvipb"]
 
 [ext_resource type="PackedScene" uid="uid://b5ng1botsrfm3" path="res://scene/player.tscn" id="1_5mvbp"]
 [ext_resource type="TileSet" uid="uid://d3jfubikcsby3" path="res://recourse/world_tile_set.tres" id="1_c7118"]
+[ext_resource type="Texture2D" uid="uid://h7a7q5dsr4yd" path="res://assets/img/FreePlatformerNA/Background/BGFront.png" id="2_am8ur"]
 [ext_resource type="Script" path="res://scene/camera.gd" id="2_sfm18"]
+[ext_resource type="Texture2D" uid="uid://2c84duo6sdv6" path="res://assets/img/FreePlatformerNA/Background/CloudsBack.png" id="3_x5j7p"]
+[ext_resource type="Texture2D" uid="uid://bppnhxqdg0rt8" path="res://assets/img/FreePlatformerNA/Background/BGBack.png" id="4_bwh3u"]
+[ext_resource type="Texture2D" uid="uid://cjtfp71mlwvvb" path="res://assets/img/FreePlatformerNA/Background/CloudsFront.png" id="4_k5dc0"]
 
 [node name="World" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(512, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 2
+
+[node name="CloudsBack" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(1056, 317)
+texture = ExtResource("3_x5j7p")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(512, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 2
+
+[node name="CloudsFront" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(1055, 280)
+texture = ExtResource("4_k5dc0")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(512, 0)
+repeat_times = 2
+
+[node name="BgBack" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(1056, 291)
+texture = ExtResource("4_bwh3u")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(512, 0)
+repeat_times = 2
+
+[node name="BgFront" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(1057, 314)
+texture = ExtResource("2_am8ur")
 
 [node name="TileMapGroup" type="Node2D" parent="."]
 
@@ -18,7 +59,10 @@ tile_set = ExtResource("1_c7118")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(665, 352)
+offset = Vector2(0, -100)
 zoom = Vector2(3, 3)
+limit_top = 260
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 script = ExtResource("2_sfm18")

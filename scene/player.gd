@@ -39,8 +39,6 @@ var last_dir : float:
 			scale = Vector2(1, 1)
 
 var is_jump : bool = false
-
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 #endregion
 
 # TODO 玩家 ===============>虚方法<===============
@@ -53,29 +51,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	dir = Input.get_axis("player_one_left", "player_one_right") if not is_player_two else Input.get_axis("player_two_left", "player_two_right")
-
 	is_jump = Input.is_action_just_pressed("player_one_jump") if not is_player_two else Input.is_action_just_pressed("player_two_jump")
 
-	if velocity.y < 0:
-		animation_player.play("jump")
-	elif velocity.y > 0:
-		animation_player.play("fall")
-	elif velocity.x != 0:
-		animation_player.play("run")
-	else :
-		animation_player.play("idle")
-
 func _physics_process(_delta: float) -> void:
-	if is_on_floor():
-		jump_count = 2
-	else :
-		velocity.y += 9.8
-
-	if is_jump and jump_count > 0:
-		jump_count -= 1
-		velocity.y = -jump_speed
-
-	velocity.x = dir * speed
+	velocity.y += 9.8
 	move_and_slide()
 
 func _input(_event: InputEvent) -> void:
