@@ -23,6 +23,7 @@ func enter():
 	print("玩家进入二段跳")
 	animation_player.play("jump")
 	player.velocity.y = -player.jump_speed
+	player.jump_count -= 1
 
 func update(_delta : float):
 	if player.velocity.y > 0:

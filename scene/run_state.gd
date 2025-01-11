@@ -24,6 +24,8 @@ func enter():
 	animation_player.play("run")
 
 func update(_delta : float):
+	if player.is_crouch:
+		switch_state.emit("crouch")
 	if player.is_jump and player.jump_count > 0:
 		switch_state.emit("jump")
 	if player.dir == 0:
