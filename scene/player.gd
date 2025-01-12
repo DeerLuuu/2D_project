@@ -40,6 +40,7 @@ var last_dir : float:
 
 var is_jump : bool = false
 var is_crouch : bool = false
+var is_wall_slide : bool = false
 #endregion
 
 # TODO 玩家 ===============>虚方法<===============
@@ -54,6 +55,7 @@ func _process(_delta: float) -> void:
 	dir = Input.get_axis("player_one_left", "player_one_right") if not is_player_two else Input.get_axis("player_two_left", "player_two_right")
 	is_jump = Input.is_action_just_pressed("player_one_jump") if not is_player_two else Input.is_action_just_pressed("player_two_jump")
 	is_crouch = Input.is_action_pressed("player_one_crouch") if not is_player_two else Input.is_action_pressed("player_two_crouch")
+	is_wall_slide = Input.is_action_pressed("player_one_wall_slide") if not is_player_two else Input.is_action_pressed("player_two_wall_slide")
 
 func _physics_process(_delta: float) -> void:
 	velocity.y += 9.8

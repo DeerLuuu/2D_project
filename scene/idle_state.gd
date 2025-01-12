@@ -27,9 +27,11 @@ func enter():
 func update(_delta : float):
 	if player.is_crouch:
 		switch_state.emit("crouch")
+	if player.velocity.y > 0:
+		switch_state.emit("fall")
 	if player.is_jump and player.jump_count > 0:
 		switch_state.emit("jump")
-	if player.dir != 0:
+	if player.dir != 0 and player.is_on_floor():
 		switch_state.emit("run")
 
 func physics_update(_delta : float):

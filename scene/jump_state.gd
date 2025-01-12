@@ -26,6 +26,8 @@ func enter():
 	player.jump_count -= 1
 
 func update(_delta : float):
+	if player.is_on_wall_only() and player.is_wall_slide:
+		switch_state.emit("wallSlide")
 	if player.is_jump and player.jump_count > 0:
 		switch_state.emit("DoubleJump")
 	if player.velocity.y > 0:
