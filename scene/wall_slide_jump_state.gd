@@ -23,6 +23,7 @@ func enter():
 	print("玩家进入蹬墙跳状态")
 	animation_player.play("jump")
 	player.velocity = Vector2(-player.last_dir * player.speed, -player.jump_speed)
+	player.dir = -player.last_dir
 
 func update(_delta : float):
 	if player.is_on_wall_only() and player.is_wall_slide:

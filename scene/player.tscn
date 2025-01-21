@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b5ng1botsrfm3"]
+[gd_scene load_steps=35 format=3 uid="uid://b5ng1botsrfm3"]
 
 [ext_resource type="Script" path="res://scene/player.gd" id="1_sjld3"]
 [ext_resource type="Texture2D" uid="uid://2q4g52ovoog4" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Idle.png" id="1_w1gl8"]
@@ -11,13 +11,17 @@
 [ext_resource type="Script" path="res://scene/idle_state.gd" id="7_pco3p"]
 [ext_resource type="Script" path="res://scene/run_state.gd" id="8_kqk5f"]
 [ext_resource type="Texture2D" uid="uid://v4ym3vrsly5" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_WallSlide.png" id="8_r14q7"]
+[ext_resource type="Texture2D" uid="uid://dselqdsickm51" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Roll.png" id="9_2jc6r"]
 [ext_resource type="Script" path="res://scene/jump_state.gd" id="9_e4ca4"]
 [ext_resource type="Script" path="res://scene/fall_state.gd" id="10_coyhh"]
+[ext_resource type="Texture2D" uid="uid://j6e5s2kgwnln" path="res://assets/img/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_SlideAll.png" id="10_yrrmo"]
 [ext_resource type="Script" path="res://scene/double_jump_state.gd" id="11_nghy5"]
 [ext_resource type="Script" path="res://scene/crouch_state.gd" id="12_elrf8"]
 [ext_resource type="Script" path="res://scene/crouch_walk_state.gd" id="14_4c2l6"]
 [ext_resource type="Script" path="res://scene/wall_slide_state.gd" id="17_o1ehd"]
 [ext_resource type="Script" path="res://scene/wall_slide_jump_state.gd" id="18_4kmbq"]
+[ext_resource type="Script" path="res://scene/roll_state.gd" id="20_curbv"]
+[ext_resource type="Script" path="res://scene/slide_state.gd" id="22_8jwq1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3fsk"]
 resource_local_to_scene = true
@@ -739,6 +743,212 @@ tracks/6/keys = {
 "values": [Vector2(-8, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_i6k2g"]
+resource_name = "roll"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_2jc6r")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:shape:height")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [38.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FSM")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["idle"],
+"method": &"_on_state_switch"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_018k1"]
+resource_name = "slide"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_yrrmo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 2, 1, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:shape:height")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [19.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -9)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FSM")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["idle"],
+"method": &"_on_state_switch"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_286or"]
 _data = {
 "RESET": SubResource("Animation_1k7xo"),
@@ -747,7 +957,9 @@ _data = {
 "fall": SubResource("Animation_6aupy"),
 "idle": SubResource("Animation_6bufd"),
 "jump": SubResource("Animation_uycne"),
+"roll": SubResource("Animation_i6k2g"),
 "run": SubResource("Animation_r4hxi"),
+"slide": SubResource("Animation_018k1"),
 "wall_slide": SubResource("Animation_yvb5d")
 }
 
@@ -756,6 +968,8 @@ collision_layer = 2
 script = ExtResource("1_sjld3")
 speed = 200.0
 jump_speed = 250.0
+roll_speed = 300.0
+slide_speed = 250.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, -40)
@@ -802,3 +1016,9 @@ script = ExtResource("17_o1ehd")
 
 [node name="WallSlideJumpState" type="Node" parent="FSM"]
 script = ExtResource("18_4kmbq")
+
+[node name="RollState" type="Node" parent="FSM"]
+script = ExtResource("20_curbv")
+
+[node name="SlideState" type="Node" parent="FSM"]
+script = ExtResource("22_8jwq1")

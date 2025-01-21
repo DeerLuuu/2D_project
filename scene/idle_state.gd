@@ -25,6 +25,10 @@ func enter():
 	player.jump_count = 2
 
 func update(_delta : float):
+	if player.is_slide:
+		switch_state.emit("slide")
+	if player.is_roll:
+		switch_state.emit("roll")
 	if player.is_crouch:
 		switch_state.emit("crouch")
 	if player.velocity.y > 0:

@@ -19,6 +19,8 @@ class_name Player extends CharacterBody2D
 #region 变量
 @export var speed : float
 @export var jump_speed : float
+@export var roll_speed : float
+@export var slide_speed : float
 @export var is_player_two : bool = false
 @export var jump_count : int = 2
 
@@ -41,6 +43,8 @@ var last_dir : float:
 var is_jump : bool = false
 var is_crouch : bool = false
 var is_wall_slide : bool = false
+var is_roll : bool = false
+var is_slide : bool = false
 #endregion
 
 # TODO 玩家 ===============>虚方法<===============
@@ -52,8 +56,11 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	dir = Input.get_axis("player_one_left", "player_one_right") if not is_player_two else Input.get_axis("player_two_left", "player_two_right")
+	if not is_on_wall_only():
+		dir = Input.get_axis("player_one_left", "player_one_right") if not is_player_two else Input.get_axis("player_two_left", "player_two_right")
 	is_jump = Input.is_action_just_pressed("player_one_jump") if not is_player_two else Input.is_action_just_pressed("player_two_jump")
+	is_roll = Input.is_action_just_pressed("player_one_roll") if not is_player_two else Input.is_action_just_pressed("player_two_roll")
+	is_slide = Input.is_action_just_pressed("player_one_slide") if not is_player_two else Input.is_action_just_pressed("player_two_slide")
 	is_crouch = Input.is_action_pressed("player_one_crouch") if not is_player_two else Input.is_action_pressed("player_two_crouch")
 	is_wall_slide = Input.is_action_pressed("player_one_wall_slide") if not is_player_two else Input.is_action_pressed("player_two_wall_slide")
 
