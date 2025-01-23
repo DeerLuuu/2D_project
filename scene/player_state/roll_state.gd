@@ -19,7 +19,6 @@ extends State
 # TODO 翻滚状态 ===============>状态模板方法<===============
 #region 状态模板方法
 func enter():
-	print("玩家进入翻滚状态")
 	animation_player.play("roll")
 	player.velocity.x = player.roll_speed * player.last_dir
 

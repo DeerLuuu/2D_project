@@ -20,7 +20,6 @@ extends State
 # TODO 跳跃状态 ===============>状态模板方法<===============
 #region 状态模板方法
 func enter():
-	print("玩家进入跳跃状态")
 	animation_player.play("jump")
 	player.velocity.y = -player.jump_speed
 	player.jump_count -= 1

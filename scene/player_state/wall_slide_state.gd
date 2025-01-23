@@ -20,7 +20,6 @@ extends State
 # TODO 玩家爬墙状态 ===============>状态模板方法<===============
 #region 状态模板方法
 func enter():
-	print("玩家进入爬墙状态")
 	animation_player.play("wall_slide")
 	player.velocity.y = 0
 

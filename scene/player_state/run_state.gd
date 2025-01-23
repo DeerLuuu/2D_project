@@ -20,7 +20,6 @@ extends State
 # TODO 移动状态 ===============>状态模板方法<===============
 #region 状态模板方法
 func enter():
-	print("玩家进入移动状态")
 	animation_player.play("run")
 
 func update(_delta : float):

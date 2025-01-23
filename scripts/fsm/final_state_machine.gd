@@ -46,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 # TODO 有限状态机 ===============>信号链接方法<===============
 #region 信号链接方法
 func _on_state_switch(state_name : String) -> void:
-	if current_state.name.to_upper() == state_name.to_upper():
+	if current_state.name.to_upper() == state_name.to_upper() + "STATE":
 		return
 
 	var new_state : State = states[state_name.to_upper() + "STATE"]

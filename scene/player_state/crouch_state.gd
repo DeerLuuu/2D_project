@@ -20,7 +20,6 @@ extends State
 # TODO 下蹲状态 ===============>状态模板方法<===============
 #region 状态模板方法
 func enter():
-	print("玩家进入下蹲状态")
 	animation_player.play("crouch")
 
 func update(_delta : float):

@@ -20,7 +20,6 @@ extends State
 # TODO 滑铲状态 ===============>状态模板方法<===============
 #region 状态模板方法
 func enter():
-	print("玩家进入滑铲状态")
 	animation_player.play("slide")
 	player.velocity.x = player.slide_speed * player.last_dir
 

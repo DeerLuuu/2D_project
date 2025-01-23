@@ -18,6 +18,7 @@ class_name PlayerCamera extends Camera2D
 # TODO 玩家相机 ===============>变 量<===============
 #region 变量
 var players : Array
+var has_player : bool
 #endregion
 
 # TODO 玩家相机 ===============>虚方法<===============
@@ -30,8 +31,15 @@ func _ready() -> void:
 	for player in players:
 		if player is not Player:
 			players.erase(player)
+		else :
+			player.is_dead.connect(_on_player_is_dead)
 
 func _process(_delta: float) -> void:
+	if players.size() > 0:
+		has_player = true
+	else :
+		has_player = false
+	if not has_player: return
 	if players.size() == 1:
 		global_position = players[0].global_position
 	elif players.size() == 2:
@@ -54,7 +62,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 # TODO 玩家相机 ===============>信号链接方法<===============
 #region 信号链接方法
-
+func _on_player_is_dead(player : Player) -> void:
+	players.erase(player)
 #endregion
 
 # TODO 玩家相机 ===============>工具方法<===============

@@ -1,13 +1,40 @@
-[gd_scene load_steps=9 format=4 uid="uid://dv6nsw81dvipb"]
+[gd_scene load_steps=14 format=4 uid="uid://dv6nsw81dvipb"]
 
 [ext_resource type="PackedScene" uid="uid://b5ng1botsrfm3" path="res://scene/player.tscn" id="1_5mvbp"]
+[ext_resource type="Script" path="res://scene/stats_h_box_container.gd" id="1_74oga"]
 [ext_resource type="TileSet" uid="uid://d3jfubikcsby3" path="res://recourse/world_tile_set.tres" id="1_c7118"]
 [ext_resource type="Texture2D" uid="uid://h7a7q5dsr4yd" path="res://assets/img/FreePlatformerNA/Background/BGFront.png" id="2_am8ur"]
-[ext_resource type="Script" path="res://scene/camera.gd" id="2_sfm18"]
+[ext_resource type="Script" path="res://scripts/other/camera.gd" id="2_sfm18"]
 [ext_resource type="Texture2D" uid="uid://cbexuelh1u4qr" path="res://assets/img/FreePlatformerNA/Background/background.png" id="2_xhbgc"]
 [ext_resource type="Texture2D" uid="uid://2c84duo6sdv6" path="res://assets/img/FreePlatformerNA/Background/CloudsBack.png" id="3_x5j7p"]
 [ext_resource type="Texture2D" uid="uid://bppnhxqdg0rt8" path="res://assets/img/FreePlatformerNA/Background/BGBack.png" id="4_bwh3u"]
 [ext_resource type="Texture2D" uid="uid://cjtfp71mlwvvb" path="res://assets/img/FreePlatformerNA/Background/CloudsFront.png" id="4_k5dc0"]
+[ext_resource type="PackedScene" uid="uid://ltc4xvecctwx" path="res://scene/enemy.tscn" id="9_v1ixe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3abu5"]
+bg_color = Color(0, 0, 0, 0.490196)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 8
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wci3f"]
+bg_color = Color(1, 0.158031, 0.00412288, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au0x3"]
+bg_color = Color(0, 0, 0, 0.490196)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 8
+shadow_offset = Vector2(-8, 8)
 
 [node name="World" type="Node2D"]
 
@@ -76,5 +103,37 @@ script = ExtResource("2_sfm18")
 position = Vector2(742, 509)
 
 [node name="Player2" parent="." instance=ExtResource("1_5mvbp")]
-position = Vector2(338, 235)
+position = Vector2(413, 342)
 is_player_two = true
+
+[node name="Enemy" parent="." instance=ExtResource("9_v1ixe")]
+position = Vector2(654, 384)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="StatsHBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_74oga")
+
+[node name="PlayerOneBar" type="ProgressBar" parent="UI/StatsHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_3abu5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wci3f")
+value = 50.0
+show_percentage = false
+
+[node name="PlayerTwoBar" type="ProgressBar" parent="UI/StatsHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_au0x3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wci3f")
+value = 50.0
+fill_mode = 1
+show_percentage = false
