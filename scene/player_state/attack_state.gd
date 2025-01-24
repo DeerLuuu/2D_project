@@ -14,6 +14,7 @@ extends State
 #region 变量
 @onready var player: Player = $"../.."
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var attack_audio: AudioStreamPlayer2D = $"../../AttackAudio"
 
 #endregion
 
@@ -21,6 +22,7 @@ extends State
 #region 状态模板方法
 func enter():
 	animation_player.play("attack")
+	attack_audio.play()
 
 func update(_delta : float):
 	pass

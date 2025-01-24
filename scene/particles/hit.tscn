@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckekcbb7lc3xb"]
+
+[sub_resource type="Gradient" id="Gradient_t8jxf"]
+offsets = PackedFloat32Array(0, 0.347458)
+colors = PackedColorArray(0.746881, 0, 0.255137, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7rr5p"]
+gradient = SubResource("Gradient_t8jxf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.876068, 0.884615)
+
+[node name="Hit" type="CPUParticles2D"]
+emitting = false
+amount = 32
+one_shot = true
+preprocess = 0.2
+texture = SubResource("GradientTexture2D_7rr5p")
+emission_shape = 2
+emission_sphere_radius = 10.0
+gravity = Vector2(98, 0)
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+scale_amount_min = 0.05
+scale_amount_max = 0.2

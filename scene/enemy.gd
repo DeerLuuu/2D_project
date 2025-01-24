@@ -31,6 +31,7 @@ var dir : float:
 		elif dir == 1 :
 			rotation = 0
 			scale = Vector2(1, 1)
+var hit_dir : float
 #endregion
 
 # TODO 怪物 ===============>虚方法<===============
@@ -65,8 +66,12 @@ func _on_health_model_health_update(current_health: float, max_health: float) ->
 
 func _on_hurt_area_area_entered(area: Area2D) -> void:
 	var player : Player = area.get_parent()
+
 	health_model.current_health -= player.damage
 	if health_model.current_health == 0: return
+
+	hit_dir = -1 if player.global_position.x > global_position.x else 1
+
 	fsm._on_state_switch("hit")
 #endregion
 

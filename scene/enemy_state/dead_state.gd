@@ -14,6 +14,7 @@ extends State
 #region 变量
 @onready var enemy: Enemy = $"../.."
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var dead_audio: AudioStreamPlayer2D = $"../../DeadAudio"
 
 #endregion
 
@@ -22,6 +23,7 @@ extends State
 func enter():
 	print("怪物进入死亡状态")
 	animation_player.play("dead")
+	dead_audio.play()
 
 func update(_delta : float):
 	pass

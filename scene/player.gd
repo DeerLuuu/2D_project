@@ -51,6 +51,7 @@ var is_roll : bool = false
 var is_slide : bool = false
 var is_attack : bool =  false
 var combo : int = 0
+var hit_dir : float
 #endregion
 
 # TODO 玩家 ===============>虚方法<===============
@@ -93,8 +94,12 @@ func _on_health_model_health_update(current_health: float, max_health: float) ->
 
 func _on_hurt_area_area_entered(area: Area2D) -> void:
 	var enemy : Enemy = area.get_parent()
+
 	health_model.current_health -= enemy.damage
 	if health_model.current_health == 0: return
+
+	hit_dir = -1 if enemy.global_position.x > global_position.x else 1
+
 	fsm._on_state_switch("hit")
 #endregion
 

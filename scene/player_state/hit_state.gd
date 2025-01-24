@@ -21,6 +21,7 @@ extends State
 #region 状态模板方法
 func enter():
 	animation_player.play("hit")
+	player.velocity = Vector2(player.hit_dir * 50, -50)
 
 func update(_delta : float):
 	pass
@@ -29,7 +30,7 @@ func physics_update(_delta : float):
 	pass
 
 func exit():
-	pass
+	player.velocity = Vector2.ZERO
 #endregion
 
 # TODO 玩家受伤状态 ===============>信号链接方法<===============
