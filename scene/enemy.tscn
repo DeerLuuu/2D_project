@@ -1,21 +1,21 @@
 [gd_scene load_steps=32 format=3 uid="uid://ltc4xvecctwx"]
 
-[ext_resource type="Script" path="res://scene/enemy.gd" id="1_3emn1"]
+[ext_resource type="Script" uid="uid://d3gw0psfn60n4" path="res://scene/enemy.gd" id="1_3emn1"]
 [ext_resource type="Texture2D" uid="uid://blj28ndxmdwj0" path="res://assets/img/Skeleton/Sprite Sheets/Skeleton Idle.png" id="1_3sbk0"]
 [ext_resource type="Texture2D" uid="uid://dr87l6fm174sh" path="res://assets/img/Skeleton/Sprite Sheets/Skeleton Walk.png" id="3_2o455"]
-[ext_resource type="Script" path="res://scripts/fsm/final_state_machine.gd" id="3_pv1q5"]
+[ext_resource type="Script" uid="uid://c1nkdtic3d4rn" path="res://scripts/fsm/final_state_machine.gd" id="3_pv1q5"]
 [ext_resource type="Texture2D" uid="uid://iuqtw6yauip0" path="res://assets/img/Skeleton/Sprite Sheets/Skeleton Hit.png" id="4_16njf"]
-[ext_resource type="Script" path="res://scene/enemy_state/idle_state.gd" id="4_orp1u"]
+[ext_resource type="Script" uid="uid://bw8wrtct3x4a" path="res://scene/enemy_state/idle_state.gd" id="4_orp1u"]
 [ext_resource type="Texture2D" uid="uid://ddpaeikkvxbmp" path="res://assets/img/Skeleton/Sprite Sheets/Skeleton Dead.png" id="5_uhxrh"]
-[ext_resource type="Script" path="res://scene/enemy_state/roam_state.gd" id="6_rcehj"]
+[ext_resource type="Script" uid="uid://btrswosmwgimo" path="res://scene/enemy_state/roam_state.gd" id="6_rcehj"]
 [ext_resource type="Texture2D" uid="uid://b8618xv0ousmd" path="res://assets/img/Skeleton/Sprite Sheets/Skeleton Attack.png" id="6_redri"]
-[ext_resource type="Script" path="res://scripts/model/health_model.gd" id="7_hvjqi"]
-[ext_resource type="Script" path="res://scene/enemy_state/hit_state.gd" id="8_qblbl"]
-[ext_resource type="Script" path="res://scene/enemy_state/dead_state.gd" id="9_dvpn7"]
+[ext_resource type="Script" uid="uid://de8q5h8ff2m8j" path="res://scripts/model/health_model.gd" id="7_hvjqi"]
+[ext_resource type="Script" uid="uid://c66vcbcleejaa" path="res://scene/enemy_state/hit_state.gd" id="8_qblbl"]
+[ext_resource type="Script" uid="uid://73iatn81dgjw" path="res://scene/enemy_state/dead_state.gd" id="9_dvpn7"]
 [ext_resource type="AudioStream" uid="uid://hajw8id6ck8k" path="res://assets/audio/hit - Track 1.wav" id="11_nd585"]
 [ext_resource type="AudioStream" uid="uid://beuspkb18tyf2" path="res://assets/audio/hit - Track 2.wav" id="12_dmh56"]
-[ext_resource type="Script" path="res://scene/enemy_state/attack_state.gd" id="12_g3bb0"]
-[ext_resource type="Script" path="res://scene/enemy_state/follow_state.gd" id="13_rgtyl"]
+[ext_resource type="Script" uid="uid://cwld6a8apvkyq" path="res://scene/enemy_state/attack_state.gd" id="12_g3bb0"]
+[ext_resource type="Script" uid="uid://do2jneddksoy1" path="res://scene/enemy_state/follow_state.gd" id="13_rgtyl"]
 [ext_resource type="AudioStream" uid="uid://dsswe4jo72r20" path="res://assets/audio/hit - Track 3.wav" id="13_rrdvs"]
 [ext_resource type="AudioStream" uid="uid://bg0sok260w271" path="res://assets/audio/hit - Track 4.wav" id="14_4s0cn"]
 [ext_resource type="AudioStream" uid="uid://cvlk50wc26kih" path="res://assets/audio/hit - Track 5.wav" id="15_kdfm5"]
@@ -106,6 +106,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HurtArea/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_h8y4c"]
@@ -198,6 +210,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true, true, false, true, true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HurtArea/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ope1j"]
 resource_name = "dead"
@@ -264,6 +288,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-6, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_7enrv"]
@@ -332,6 +380,30 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-3, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HurtArea/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_pcida"]
 resource_name = "idle"
@@ -385,6 +457,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtArea/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_l8d11"]
@@ -440,15 +536,39 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtArea/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tla7k"]
 _data = {
-"RESET": SubResource("Animation_ijlto"),
-"attack": SubResource("Animation_h8y4c"),
-"dead": SubResource("Animation_ope1j"),
-"hit": SubResource("Animation_7enrv"),
-"idle": SubResource("Animation_pcida"),
-"walk": SubResource("Animation_l8d11")
+&"RESET": SubResource("Animation_ijlto"),
+&"attack": SubResource("Animation_h8y4c"),
+&"dead": SubResource("Animation_ope1j"),
+&"hit": SubResource("Animation_7enrv"),
+&"idle": SubResource("Animation_pcida"),
+&"walk": SubResource("Animation_l8d11")
 }
 
 [node name="Enemy" type="CharacterBody2D"]
@@ -457,6 +577,7 @@ scale = Vector2(1.2, 1.2)
 collision_layer = 4
 script = ExtResource("1_3emn1")
 speed = 50.0
+critical_range = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3sbk0")
@@ -487,7 +608,7 @@ shape = SubResource("CapsuleShape2D_oomc1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_tla7k")
+&"": SubResource("AnimationLibrary_tla7k")
 }
 autoplay = "idle"
 

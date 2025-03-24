@@ -31,8 +31,7 @@ func physics_update(_delta : float):
 	pass
 
 func exit():
-	player.combo += 1
-	print(player.combo)
+	player.skill_combo += 1
 #endregion
 
 # TODO 玩家攻击状态 ===============>信号链接方法<===============

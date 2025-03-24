@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt47t0224ni5w"]
+
+[ext_resource type="Script" uid="uid://c77mhkuixyp2n" path="res://scripts/global/frame_label.gd" id="1_7y277"]
+
+[node name="FrameLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "当前帧数："
+script = ExtResource("1_7y277")

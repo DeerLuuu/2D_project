@@ -37,8 +37,8 @@ func enter():
 	hit_audio.play()
 
 	var camera : PlayerCamera = get_viewport().get_camera_2d()
-	camera.camera_shake(0.1)
-	camera.ice_time(0.2, 0.5)
+	camera.camera_shake(0.05)
+	camera.ice_time(0.2, 0.1)
 
 func update(_delta : float):
 	pass

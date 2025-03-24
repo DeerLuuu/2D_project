@@ -14,6 +14,7 @@ extends State
 #region 变量
 @onready var player: Player = $"../.."
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var skill_combo_timer: Timer = $"../../SkillComboTimer"
 
 #endregion
 
@@ -21,8 +22,14 @@ extends State
 #region 状态模板方法
 func enter():
 	animation_player.play("run")
+	skill_combo_timer.start(.5)
 
 func update(_delta : float):
+	if player.is_attack:
+		if (player.skill_combo + 1) % 2 == 0:
+			switch_state.emit("attack2")
+		else :
+			switch_state.emit("attack")
 	if player.is_slide:
 		switch_state.emit("slide")
 	if player.is_roll:
@@ -39,6 +46,7 @@ func physics_update(_delta : float):
 
 func exit():
 	player.velocity.x = 0
+	skill_combo_timer.stop()
 #endregion
 
 # TODO 移动状态 ===============>信号链接方法<===============

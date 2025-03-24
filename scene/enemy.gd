@@ -21,6 +21,8 @@ class_name Enemy extends CharacterBody2D
 @onready var fsm: FSM = $FSM
 @export var speed : float
 @export var damage : float = 10
+@export var exp_damage : float
+@export_range(0., 1.) var critical_range : float
 
 var dir : float:
 	set(v):
@@ -50,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 	velocity.y += 9.8
 	move_and_slide()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	pass
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -59,15 +61,35 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 # TODO 怪物 ===============>信号链接方法<===============
 #region 信号链接方法
-func _on_health_model_health_update(current_health: float, max_health: float) -> void:
-	print("当前血量%s" % current_health)
+func _on_health_model_health_update(current_health: float, _max_health: float) -> void:
 	if current_health == 0:
 		fsm._on_state_switch("dead")
 
 func _on_hurt_area_area_entered(area: Area2D) -> void:
 	var player : Player = area.get_parent()
+	var critical_range_index : float = randf_range(0, 1)
 
-	health_model.current_health -= player.damage
+	var is_critical : bool = false
+
+	var _damage : float = player.damage + randi_range(-player.exp_damage, player.exp_damage)
+	# 当攻击太低的时候保证至少1的伤害
+	if _damage < 0: _damage = 1
+	# 当进入暴击条件时伤害翻倍
+	if critical_range_index < player.critical_range:
+		_damage *= 2
+		is_critical = true
+
+	health_model.current_health -= _damage
+
+	var hit_label : HitLabel = preload("res://scene/labels/hit_label.tscn").instantiate()
+	if is_critical:
+		hit_label.scale = Vector2.ONE * .5
+	hit_label.text = "%s" % _damage
+	hit_label.global_position = global_position
+	hit_label.global_position.y -= 20
+	hit_label.global_position.x -= (hit_label.size / 2 * hit_label.scale).x
+	get_parent().add_child(hit_label)
+
 	if health_model.current_health == 0: return
 
 	hit_dir = -1 if player.global_position.x > global_position.x else 1

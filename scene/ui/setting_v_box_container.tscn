@@ -1,0 +1,304 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwk6pw5eegh46"]
+
+[ext_resource type="Script" uid="uid://h7fheql8nv2e" path="res://scene/ui/setting_v_box_container.gd" id="1_ksmw1"]
+[ext_resource type="PackedScene" uid="uid://bkuq21loo3xbn" path="res://scene/ui/audio_setting_h_box_container.tscn" id="1_lsa7n"]
+[ext_resource type="AudioStream" uid="uid://dmoet75ecmmal" path="res://assets/audio/untitled.mp3" id="3_muvhy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ukid5"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.537255)
+shadow_offset = Vector2(8, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jv3wd"]
+font_size = 24
+
+[node name="SettingVBoxContainer" type="VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(800, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_ksmw1")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+current_tab = 1
+
+[node name="AudioPanelContainer" type="PanelContainer" parent="TabContainer"]
+visible = false
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/AudioPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/AudioPanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "音频设置"
+label_settings = SubResource("LabelSettings_ukid5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainSettingHBoxContainer" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_lsa7n")]
+layout_mode = 2
+label_text = "主音量"
+
+[node name="BGMSettingHBoxContainer" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_lsa7n")]
+layout_mode = 2
+label_text = "背景音量"
+bus = 1
+
+[node name="SFXSettingHBoxContainer" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_lsa7n")]
+layout_mode = 2
+label_text = "音效音量"
+bus = 2
+
+[node name="EnvironmentSettingHBoxContainer" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_lsa7n")]
+layout_mode = 2
+label_text = "环境音量"
+bus = 3
+
+[node name="Control2" type="Control" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ResetButton" type="Button" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "重置"
+
+[node name="SaveButton" type="Button" parent="TabContainer/AudioPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "保存"
+
+[node name="VideoPanelContainer" type="PanelContainer" parent="TabContainer"]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/VideoPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "视频设置"
+label_settings = SubResource("LabelSettings_ukid5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScreenHBoxContainer" type="HBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ScreenHBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "屏幕模式"
+label_settings = SubResource("LabelSettings_jv3wd")
+
+[node name="Control" type="Control" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ScreenHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScreenModeOptionButton" type="OptionButton" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ScreenHBoxContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "窗口模式"
+popup/item_0/id = 0
+popup/item_1/text = "全屏模式"
+popup/item_1/id = 1
+popup/item_2/text = "无边框模式"
+popup/item_2/id = 2
+
+[node name="ShakeHBoxContainer" type="HBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShakeHBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "震动设置"
+label_settings = SubResource("LabelSettings_jv3wd")
+
+[node name="ShakeHSlider" type="HSlider" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShakeHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+
+[node name="ShakeCheckButton" type="CheckButton" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShakeHBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "关闭"
+
+[node name="IceHBoxContainer" type="HBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/IceHBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "冻结帧设置"
+label_settings = SubResource("LabelSettings_jv3wd")
+
+[node name="Control" type="Control" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/IceHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IceCheckButton" type="CheckButton" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/IceHBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "关闭"
+
+[node name="FlowLabelHBoxContainer" type="HBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/FlowLabelHBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "漂浮文字设置"
+label_settings = SubResource("LabelSettings_jv3wd")
+
+[node name="FlowLabelHSlider" type="HSlider" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/FlowLabelHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+
+[node name="FlowLabelCheckButton" type="CheckButton" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/FlowLabelHBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "关闭"
+
+[node name="ShowFrameHBoxContainer" type="HBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShowFrameHBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "帧数显示"
+label_settings = SubResource("LabelSettings_jv3wd")
+
+[node name="Control" type="Control" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShowFrameHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShowFrameCheckButton" type="CheckButton" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShowFrameHBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "关闭"
+
+[node name="Control2" type="Control" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ResetButton" type="Button" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "重置"
+
+[node name="SaveButton" type="Button" parent="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "保存"
+
+[node name="KeyPanelContainer" type="PanelContainer" parent="TabContainer"]
+visible = false
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Label" type="Label" parent="TabContainer/KeyPanelContainer"]
+layout_mode = 2
+text = "按键设置页面"
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "返回"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_muvhy")
+autoplay = true
+bus = &"BGM"
+
+[connection signal="item_selected" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ScreenHBoxContainer/ScreenModeOptionButton" to="." method="_on_screen_mode_option_button_item_selected"]
+[connection signal="value_changed" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShakeHBoxContainer/ShakeHSlider" to="." method="_on_shake_h_slider_value_changed"]
+[connection signal="toggled" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShakeHBoxContainer/ShakeCheckButton" to="." method="_on_shake_check_button_toggled"]
+[connection signal="toggled" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/IceHBoxContainer/IceCheckButton" to="." method="_on_ice_check_button_toggled"]
+[connection signal="value_changed" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/FlowLabelHBoxContainer/FlowLabelHSlider" to="." method="_on_flow_label_h_slider_value_changed"]
+[connection signal="toggled" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/FlowLabelHBoxContainer/FlowLabelCheckButton" to="." method="_on_flow_label_check_button_toggled"]
+[connection signal="toggled" from="TabContainer/VideoPanelContainer/MarginContainer/VBoxContainer/ShowFrameHBoxContainer/ShowFrameCheckButton" to="." method="_on_show_frame_check_button_toggled"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

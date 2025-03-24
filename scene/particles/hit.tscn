@@ -13,9 +13,9 @@ fill_to = Vector2(0.876068, 0.884615)
 [node name="Hit" type="CPUParticles2D"]
 emitting = false
 amount = 32
+texture = SubResource("GradientTexture2D_7rr5p")
 one_shot = true
 preprocess = 0.2
-texture = SubResource("GradientTexture2D_7rr5p")
 emission_shape = 2
 emission_sphere_radius = 10.0
 gravity = Vector2(98, 0)

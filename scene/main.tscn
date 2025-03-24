@@ -1,3 +1,92 @@
-[gd_scene format=3 uid="uid://dsmnvhshx8vpo"]
+[gd_scene load_steps=5 format=3 uid="uid://dsmnvhshx8vpo"]
+
+[ext_resource type="Texture2D" uid="uid://bptu02aq63i8j" path="res://assets/img/bg/屏幕截图 2025-01-25 212847.png" id="1_5ubgw"]
+[ext_resource type="Script" uid="uid://c4jw5gbryfkdy" path="res://scene/main.gd" id="1_jcygc"]
+[ext_resource type="Script" uid="uid://d0wjuy1c673s8" path="res://scene/menu_button_group.gd" id="2_jcj7v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r2spw"]
+font_size = 96
+font_color = Color(0.667649, 0.38305, 0, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 12
+shadow_color = Color(0.4279, 0.204123, 1.44392e-07, 0.521569)
+shadow_offset = Vector2(12, 6)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_jcygc")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BG" type="TextureRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5ubgw")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="MenuButtonGroup" type="VBoxContainer" parent="UI/BG/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_jcj7v")
+
+[node name="TitleLabel" type="Label" parent="UI/BG/MarginContainer/MenuButtonGroup"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "2D双人横板游戏"
+label_settings = SubResource("LabelSettings_r2spw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="UI/BG/MarginContainer/MenuButtonGroup"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="UI/BG/MarginContainer/MenuButtonGroup"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "开始游戏"
+
+[node name="ContinueButton" type="Button" parent="UI/BG/MarginContainer/MenuButtonGroup"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "继续游戏"
+
+[node name="SettingsButton" type="Button" parent="UI/BG/MarginContainer/MenuButtonGroup"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "游戏设置"
+
+[node name="ExitButton" type="Button" parent="UI/BG/MarginContainer/MenuButtonGroup"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "退出游戏"
+
+[node name="UIEX" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+
+[connection signal="pressed" from="UI/BG/MarginContainer/MenuButtonGroup/StartButton" to="UI/BG/MarginContainer/MenuButtonGroup" method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/BG/MarginContainer/MenuButtonGroup/ContinueButton" to="UI/BG/MarginContainer/MenuButtonGroup" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="UI/BG/MarginContainer/MenuButtonGroup/SettingsButton" to="UI/BG/MarginContainer/MenuButtonGroup" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UI/BG/MarginContainer/MenuButtonGroup/ExitButton" to="UI/BG/MarginContainer/MenuButtonGroup" method="_on_exit_button_pressed"]

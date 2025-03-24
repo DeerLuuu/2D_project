@@ -14,7 +14,8 @@ extends State
 #region 变量
 @onready var player: Player = $"../.."
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var combo_timer: Timer = $"../../ComboTimer"
+@onready var skill_combo_timer: Timer = $"../../SkillComboTimer"
+
 #endregion
 
 # TODO 待机状态 ===============>状态模板方法<===============
@@ -22,11 +23,11 @@ extends State
 func enter():
 	animation_player.play("idle")
 	player.jump_count = 2
-	combo_timer.start(.5)
+	skill_combo_timer.start(.5)
 
 func update(_delta : float):
 	if player.is_attack:
-		if (player.combo + 1) % 2 == 0:
+		if (player.skill_combo + 1) % 2 == 0:
 			switch_state.emit("attack2")
 		else :
 			switch_state.emit("attack")
@@ -47,7 +48,7 @@ func physics_update(_delta : float):
 	pass
 
 func exit():
-	combo_timer.stop()
+	skill_combo_timer.stop()
 #endregion
 
 # TODO 待机状态 ===============>信号链接方法<===============

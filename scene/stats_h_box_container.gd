@@ -19,8 +19,6 @@ extends HBoxContainer
 #region 变量
 @onready var player_one_bar: ProgressBar = %PlayerOneBar
 @onready var player_two_bar: ProgressBar = %PlayerTwoBar
-
-var players : Array
 #endregion
 
 # TODO 角色状态UI容器 ===============>虚方法<===============
@@ -29,15 +27,14 @@ func _init() -> void:
 	pass
 
 func _ready() -> void:
-	players = get_tree().get_nodes_in_group("Player")
-
+	await $"../../..".ready
 	player_one_bar.show()
 	player_two_bar.show()
 
-	if players.size() == 1:
+	if Global.players.size() == 1:
 		player_two_bar.hide()
 
-	for player : Player in players:
+	for player : Player in Global.players:
 		player.health_model.health_update.connect(_on_player_health_updata.bind(player))
 
 func _process(_delta: float) -> void:
